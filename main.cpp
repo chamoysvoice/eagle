@@ -1,5 +1,6 @@
 #include<iostream>
 #include<opencv2/opencv.hpp>
+#include "includes/Filters.cpp"
 
 using namespace cv;
 
@@ -10,7 +11,7 @@ int main(int argc, char** argv){
     }
 
     Mat image;
-    image = imread( "testing/iphone.jpg", 1 );
+    image = imread( argv[1], 1 );
 
     if ( !image.data )
     {
@@ -18,5 +19,9 @@ int main(int argc, char** argv){
         return -1;
     }
 
+    cv::imshow("Enseñando imagen", EGL::to_grayscale(image));
 
+
+    cv::waitKey();
+    return 0;
 }
