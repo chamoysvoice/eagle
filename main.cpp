@@ -4,6 +4,13 @@
 
 using namespace cv;
 
+/*
+ * This is the main template where you can test
+ * the functions within the library and ****
+ * remember namespace for eagle is EGL::x
+ */
+
+
 int main(int argc, char** argv){
     if (argc != 2){
         std::cerr << "usage ./main <IMAGE_PATH>";
@@ -19,7 +26,7 @@ int main(int argc, char** argv){
         return -1;
     }
 
-    cv::imshow("Enseñando imagen", EGL::to_grayscale(image));
+    cv::imshow("Output", EGL::to_binary(image, (float)0.5));
 
 
     cv::waitKey();
