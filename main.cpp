@@ -12,8 +12,8 @@ using namespace cv;
 
 
 int main(int argc, char** argv){
-    if (argc != 2){
-        std::cerr << "usage ./main <IMAGE_PATH>";
+    if (argc < 2){
+        std::cerr << "usage ./main <IMAGE_PATH> [<OUTPUT_PATH>]";
         return -1;
     }
 
@@ -26,7 +26,14 @@ int main(int argc, char** argv){
         return -1;
     }
 
-    cv::imshow("Output", EGL::to_binary(image, (float)0.5));
+    Mat newImage = EGL::to_binary(image, (float)0.5);
+
+
+    imshow("Output", newImage);
+
+    if(argc == 3){
+    	imwrite(argv[2], newImage);
+    }
 
 
     cv::waitKey();
