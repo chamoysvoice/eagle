@@ -3,10 +3,10 @@
 
 #include<opencv2/opencv.hpp>
 
-namespace EGL{
-
-cv::Mat to_grayscale(cv::Mat image);
-cv::Mat to_binary(cv::Mat image, float threshold);
+namespace egl{
+	cv::Mat to_grayscale(cv::Mat image);
+	cv::Mat to_binary(cv::Mat image, float threshold);
+	cv::Mat add_to_pixels(cv::Mat image, int quantity);
 }
 
 #endif

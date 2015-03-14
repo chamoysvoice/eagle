@@ -26,9 +26,9 @@ int main(int argc, char** argv){
         return -1;
     }
 
-    Mat newImage = EGL::to_binary(image, (float)0.5);
+    Mat newImage = egl::add_to_pixels(image, -30);
 
-
+    imshow("Original image", image);
     imshow("Output", newImage);
 
     if(argc == 3){

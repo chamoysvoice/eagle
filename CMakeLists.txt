@@ -7,12 +7,12 @@ find_package( OpenCV REQUIRED )
 
 
 set(SOURCE_FILES 
-	../main.cpp
+	main.cpp
 )
 
 set(LIBRARY_FILES 
-	../includes/Filters.hpp
-	../includes/Filters.cpp
+	includes/Filters.hpp
+	includes/Filters.cpp
 )
 
 add_executable( main ${SOURCE_FILES} )

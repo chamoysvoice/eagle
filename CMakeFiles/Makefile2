@@ -62,7 +62,7 @@ CMAKE_BINARY_DIR = /home/alex/Development/eagle
 CMakeFiles/main.dir/all:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/depend
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/alex/Development/eagle/CMakeFiles 
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/alex/Development/eagle/CMakeFiles  1
 	@echo "Built target main"
 .PHONY : CMakeFiles/main.dir/all
 
@@ -72,7 +72,7 @@ all: CMakeFiles/main.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/alex/Development/eagle/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/alex/Development/eagle/CMakeFiles 1
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/main.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/alex/Development/eagle/CMakeFiles 0
 .PHONY : CMakeFiles/main.dir/rule
