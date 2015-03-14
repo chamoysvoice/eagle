@@ -6,25 +6,39 @@
 
 #IncludeRegexTransform: 
 
-/home/alex/Development/eagle/includes/Filters.cpp
-Filters.hpp
-/home/alex/Development/eagle/includes/Filters.hpp
+/home/alex/Development/eagle/includes/eagle.hpp
+filters.cpp
+/home/alex/Development/eagle/includes/filters.cpp
+utils.cpp
+/home/alex/Development/eagle/includes/utils.cpp
+
+/home/alex/Development/eagle/includes/filters.cpp
+filters.hpp
+/home/alex/Development/eagle/includes/filters.hpp
 climits
 -
 iostream
 -
 
-/home/alex/Development/eagle/includes/Filters.hpp
+/home/alex/Development/eagle/includes/filters.hpp
 opencv2/opencv.hpp
 -
+
+/home/alex/Development/eagle/includes/utils.cpp
+utils.hpp
+/home/alex/Development/eagle/includes/utils.hpp
+iostream
+-
+
+/home/alex/Development/eagle/includes/utils.hpp
 
 /home/alex/Development/eagle/main.cpp
 iostream
 -
 opencv2/opencv.hpp
 -
-includes/Filters.cpp
-/home/alex/Development/eagle/includes/Filters.cpp
+includes/eagle.hpp
+/home/alex/Development/eagle/includes/eagle.hpp
 
 /usr/local/include/opencv2/calib3d/calib3d.hpp
 opencv2/core/core.hpp

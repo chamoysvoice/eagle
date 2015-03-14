@@ -11,8 +11,11 @@ set(SOURCE_FILES
 )
 
 set(LIBRARY_FILES 
-	includes/Filters.hpp
-	includes/Filters.cpp
+	includes/filters.hpp
+	includes/filters.cpp
+	includes/eagle.hpp
+	includes/utils.cpp
+	includes/utils.hpp
 )
 
 add_executable( main ${SOURCE_FILES} )

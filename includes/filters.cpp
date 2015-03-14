@@ -1,4 +1,4 @@
-#include "Filters.hpp"
+#include "filters.hpp"
 #include <climits>
 #include <iostream>
 #define RED_CHANNEL 0
@@ -104,4 +104,25 @@ cv::Mat egl::add_to_pixels(cv::Mat image, int quantity){
 
 
 	return new_image;
+}
+
+cv::Mat egl::cry(cv::Mat image){
+	cv::Mat dst(image.rows, image.cols, CV_8UC3);
+
+	cv::Vec3b colors;
+	int max_r, max_g, max_b;
+	for (int j = 0; j < image.cols - 1; ++j) {
+		max_r = max_g = max_b = 0;
+		for (int i = 0; i < image.rows - 1; ++i) {
+			 colors = image.at<cv::Vec3b>(i,j);
+			 if(max_r < colors[0]) max_r = colors[0];
+			 if(max_g < colors[1]) max_g = colors[1];
+			 if(max_b < colors[2]) max_b = colors[2];
+
+			 dst.at<cv::Vec3b>(i,j) = cv::Vec3b(max_r, max_g, max_b);
+		}
+	}
+
+
+	return dst;
 }

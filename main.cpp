@@ -1,6 +1,6 @@
 #include<iostream>
 #include<opencv2/opencv.hpp>
-#include "includes/Filters.cpp"
+#include "includes/eagle.hpp"
 
 using namespace cv;
 
@@ -17,7 +17,7 @@ int main(int argc, char** argv){
         return -1;
     }
 
-    Mat image;
+    Mat image, grey_image;
     image = imread( argv[1], 1 );
 
     if ( !image.data )
@@ -26,7 +26,12 @@ int main(int argc, char** argv){
         return -1;
     }
 
-    Mat newImage = egl::add_to_pixels(image, -30);
+    cv::cvtColor(image, grey_image, CV_BGR2GRAY);
+
+
+    Mat newImage = egl::histogram(image, 64);
+
+    newImage = egl::cry(newImage);
 
     imshow("Original image", image);
     imshow("Output", newImage);
