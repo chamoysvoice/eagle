@@ -29,11 +29,9 @@ int main(int argc, char** argv){
     cv::cvtColor(image, grey_image, CV_BGR2GRAY);
 
 
-    Mat newImage = egl::histogram(image, 64);
+    Mat newImage = egl::histogram(grey_image);
 
-    newImage = egl::cry(newImage);
-
-    imshow("Original image", image);
+    imshow("Original image", grey_image);
     imshow("Output", newImage);
 
     if(argc == 3){

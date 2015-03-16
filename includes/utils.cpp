@@ -3,47 +3,52 @@
 #define PIXEL_UPLIMIT 255
 
 
+
+
 cv::Mat egl::histogram(cv::Mat src, int buckets = 256){
-	cv::Mat dst;
+	cv::Mat dst, tmp;
 	if(src.channels() == 1){
 		dst = egl::bw_histogram(src, buckets);
 	} else {
 		dst = egl::rgb_histogram(src, buckets);
 	}
-
-	return dst;
+	return egl::cry(dst);
 }
 
 cv::Mat egl::bw_histogram(cv::Mat src, int buckets){
 	std::vector<int> bw_buckets (buckets,0);
 
 	float bucket_size = 256.0 / buckets;
+	int max;
+	max = 0;
 	bool add_bw;
 	add_bw = false;
-	int q;
+	cv::Vec3b colors;
 	for (int i = 0; i < src.rows - 1; ++i) {
 		for (int j = 0; j < src.cols - 1; ++j) {
-			 q = src.at<int>(i,j);
+			 colors = src.at<cv::Vec3b>(i,j);
 			 add_bw = false;
 			 for(int k = 0; k < buckets; k++){
-				 if(q< bucket_size * k && !add_bw){
+				 if(colors[0] < bucket_size * k && !add_bw){
 					 add_bw = true;
 					 bw_buckets.at(k) += 1;
+					 if(max < bw_buckets.at(k)) max = bw_buckets.at(k);
 				 }
+
 			 }
 		}
 	}
+
+
 	int hist_w = 512; int hist_h = 360;
 	cv::Mat histImage( hist_h, hist_w, CV_8UC3, cv::Scalar( 0,0,0) );
 
 
 	for(int i = 1; i < buckets; i++){
-		cv::line( histImage, cv::Point( 2 * bucket_size * (i-1), hist_h - cvRound(bw_buckets.at(i-1) * buckets  / (hist_h * 4)  )) ,
-		   cv::Point( 2 * bucket_size * (i), hist_h - cvRound( bw_buckets.at(i) * buckets / (hist_h * 4) )),
-		   cv::Scalar( 255, 255, 255), 2, 2, 0  );
-
+		cv::line( histImage, cv::Point( 2 * bucket_size * (i-1), hist_h - cvRound(bw_buckets.at(i-1) * hist_h  / max  )) ,
+			   cv::Point( 2 * bucket_size * (i), hist_h - cvRound(bw_buckets.at(i)  * hist_h / max )),
+			   cv::Scalar( 255, 255, 255), 2, 2, 0  );
 	}
-
 
 	return histImage;
 }
