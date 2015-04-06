@@ -1,13 +1,12 @@
 #include<iostream>
-#include<opencv2/opencv.hpp>
 #include "includes/eagle.hpp"
 
 using namespace cv;
-
+using namespace std;
 /*
  * This is the main template where you can test
  * the functions within the library and ****
- * remember namespace for eagle is EGL::x
+ * remember namespace for eagle is x
  */
 
 
@@ -17,7 +16,7 @@ int main(int argc, char** argv){
         return -1;
     }
 
-    Mat image, grey_image;
+    Mat image, grey_image, newImage;
     image = imread( argv[1], 1 );
 
     if ( !image.data )
@@ -26,19 +25,19 @@ int main(int argc, char** argv){
         return -1;
     }
 
-    cv::cvtColor(image, grey_image, CV_BGR2GRAY);
+    unsigned char **alpha;
 
+    //imshow("Original image", image);
+    gaussian_profile(image);
+    imshow("Mean Filter Image", image);
 
-    Mat newImage = egl::histogram(grey_image);
-
-    imshow("Original image", grey_image);
-    imshow("Output", newImage);
+    newImage = cv::Mat(image);
 
     if(argc == 3){
     	imwrite(argv[2], newImage);
     }
 
 
-    cv::waitKey();
+    waitKey();
     return 0;
 }

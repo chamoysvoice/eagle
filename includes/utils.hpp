@@ -1,10 +1,13 @@
 #ifndef UTILS_HEADER
 #define UTILS_HEADER
 
-namespace egl{
-	cv::Mat histogram(cv::Mat src, int buckets);
-	cv::Mat bw_histogram(cv::Mat src, int buckets);
-	cv::Mat rgb_histogram(cv::Mat src, int buckets);
-}
+#include "utils.cpp"
+
+cv::Mat bw_histogram(cv::Mat src, int buckets);
+cv::Mat rgb_histogram(cv::Mat src, int buckets);
+cv::Mat histogram(cv::Mat src, int buckets);
+cv::Mat cry(cv::Mat image);
+
+
 
 #endif

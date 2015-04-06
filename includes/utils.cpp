@@ -1,21 +1,30 @@
-#include "utils.hpp"
 #include<iostream>
 #define PIXEL_UPLIMIT 255
 
 
 
+cv::Mat cry(cv::Mat image){
+	cv::Mat dst(image.rows, image.cols, CV_8UC3);
 
-cv::Mat egl::histogram(cv::Mat src, int buckets = 256){
-	cv::Mat dst, tmp;
-	if(src.channels() == 1){
-		dst = egl::bw_histogram(src, buckets);
-	} else {
-		dst = egl::rgb_histogram(src, buckets);
+	cv::Vec3b colors;
+	int max_r, max_g, max_b;
+	for (int j = 0; j < image.cols - 1; ++j) {
+		max_r = max_g = max_b = 0;
+		for (int i = 0; i < image.rows - 1; ++i) {
+			 colors = image.at<cv::Vec3b>(i,j);
+			 if(max_r < colors[0]) max_r = colors[0];
+			 if(max_g < colors[1]) max_g = colors[1];
+			 if(max_b < colors[2]) max_b = colors[2];
+
+			 dst.at<cv::Vec3b>(i,j) = cv::Vec3b(max_r, max_g, max_b);
+		}
 	}
-	return egl::cry(dst);
+
+
+	return dst;
 }
 
-cv::Mat egl::bw_histogram(cv::Mat src, int buckets){
+cv::Mat bw_histogram(cv::Mat src, int buckets){
 	std::vector<int> bw_buckets (buckets,0);
 
 	float bucket_size = 256.0 / buckets;
@@ -53,7 +62,7 @@ cv::Mat egl::bw_histogram(cv::Mat src, int buckets){
 	return histImage;
 }
 
-cv::Mat egl::rgb_histogram(cv::Mat src, int buckets){
+cv::Mat rgb_histogram(cv::Mat src, int buckets){
 
 	std::vector<int> r_buckets (buckets,0);
 	std::vector<int> g_buckets (buckets,0);
@@ -111,4 +120,13 @@ cv::Mat egl::rgb_histogram(cv::Mat src, int buckets){
 }
 
 
+cv::Mat histogram(cv::Mat src, int buckets = 256){
+	cv::Mat dst, tmp;
+	if(src.channels() == 1){
+		dst = bw_histogram(src, buckets);
+	} else {
+		dst = rgb_histogram(src, buckets);
+	}
+	return cry(dst);
+}
 

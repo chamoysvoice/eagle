@@ -1,7 +1,9 @@
 #ifndef __EAGLE_ALL_HPP__
 #define __EAGLE_ALL_HPP__
 
-#include "filters.cpp"
-#include "utils.cpp"
+
+#include<opencv2/opencv.hpp>
+#include "utils.hpp"
+#include "filters.hpp"
 
 #endif
